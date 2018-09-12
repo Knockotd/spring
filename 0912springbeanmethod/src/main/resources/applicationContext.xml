@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- Fruit 클래스의 객체 만들기 -->
+<bean id="fruit" class="vo.FruitVO"
+lazy-init="true"
+>
+
+<property name="name">
+<value>사과</value>
+</property>
+<property name="price">
+<value>3000</value>
+</property>
+<property name="count">
+<value>3</value>
+</property>
+</bean>
+
+</beans>
