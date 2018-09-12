@@ -10,7 +10,8 @@ import java.util.List;
 import vo.GoodVO;
 
 public class GoodDao {
-	GoodDao(){}
+	// GoodDao(){}
+	public GoodDao(){}
 
 	// 전체 데이터를 가져오는 메소드
 	// 파라미터를 만들 때는 insert 나 update는 VO
