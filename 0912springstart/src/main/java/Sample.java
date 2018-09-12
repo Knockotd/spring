@@ -4,7 +4,7 @@ import dao.GoodDao;
 import dao.GoodDaoFactory;
 import vo.GoodVO;
 
-public class Main {
+public class Sample {
 
 	public static void main(String[] args) {
 		//GoodDao 인스턴스 생성
