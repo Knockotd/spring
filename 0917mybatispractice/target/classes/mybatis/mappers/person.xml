@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="person">
+<!-- Person 테이블의 전체데이터를 가져오는 SQL -->
+<!-- resultType은 SQL에서 불러온 데이터 전체를 저장할 수 있는 데이터 타입을 적습니다.
+VO 클래스가 있다면 그걸 쓰고 없다면 java.util.map을 사용합니다.
+아까 mybatis 설정 파일에서 디렉토리 경로를 생략하는 코드를 작성했기 때문에
+VO 클래스가 그 경로 안에 있다면 앞의 경로를 생략하고 클래스 이름만 작성해도 됩니다.-->
+<!-- where 절이 없기 때문에 parameterType=""은 생략 -->
+<select id="personlist" resultType="PersonVO">
+select * 
+from person
+</select>
+<!-- Person 테이블에서 id를 가지고 데이터 조회 -->
+<!-- parameteType에는 where 절에 집어 넣는 조건의 값의 데이터 타입을 적습니다. -->
+<select id="selectperson" resultType="PersonVO" parameterType="java.lang.String">
+select * 
+from person
+where id = #{id}
+</select>
+<!-- 데이터를 삽입하는 SQL -->
+<!-- 데이터 삽입은 리턴되는 값이 없으므로 resultType=""은 생략합니다. -->
+<!-- parameterType=""에도 대입해야 하는 데이터가 많다면 그 모든 데이터를 담을 수 있는 자료형을 대입합니다. -->
+<insert id="insertperson" parameterType="PersonVO">
+insert into person
+values(#{id}, #{pw}, #{name}, #{phone})
+</insert>
+<!-- 테이블을 삽입하는 프로시저를 실행하는 구문 -->
+<insert id="newinsertperson" parameterType="PersonVO" statementType="CALLABLE">
+{
+call insertperson(#{id}, #{pw}, #{name}, #{phone})
+}
+</insert>
+</mapper>
