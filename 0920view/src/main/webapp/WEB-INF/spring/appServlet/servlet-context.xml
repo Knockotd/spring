@@ -18,6 +18,7 @@
 
 	<!-- Controller가 view 이름을 리턴하면 view 이름을 조합해서 html로 출력하도록 해주는 설정.
 	order 프로퍼티 추가 -->
+	<!-- 출력할 뷰를 지정하지 않은 경우, jsp로 출력하도록 해주는 뷰 리졸버 설정 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
@@ -25,9 +26,30 @@
 	</beans:bean>
 	
 	<!-- view 이름을 가지고 출력하는 view를 선택할 수 있도록 하는 설정 -->
+	<!-- 뷰 이름을 가지고 직접 출력할 뷰를 지정할 수 있도록 하는 뷰 리졸버 설정 -->
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0"/>
 	</beans:bean>
+	
+	<!-- xml 출력을 위한 설정 -->
+	<beans:bean id="marshaller"
+	class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+	<beans:property name="classesToBeBound">
+		<beans:list>
+		<!-- 데이터의 List를 가진 클래스 이름을 설정 -->
+		<beans:value>tistory.simpleisbest.view.domain.DataReport</beans:value>
+		</beans:list>
+	</beans:property>
+</beans:bean>
+
+<!-- id에는 Controller가 리턴한 뷰 이름을 설정 -->
+<beans:bean id="dataxml"
+	class="org.springframework.web.servlet.view.xml.MarshallingView">
+	<beans:property name="marshaller" ref="marshaller" />
+	<!-- 출력할 데이터의 attribute 이름을 설정 -->
+	<beans:property name="modelKey" value="dataReport" />
+</beans:bean>
+	
 	<!-- dolist 라는 view 이름이 왔을 때 ExcelView 로 출력 -->
 	<beans:bean id="dolist" class="tistory.simpleisbest.view.service.ExcelView" />
 	<!-- db라는 이름이 왔을 때 PdfView로 출력 -->

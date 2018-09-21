@@ -42,6 +42,7 @@ span:hover{
 	<a href="data.csv">CSV 가져오기</a><br/>
 	<a href="data.json">JSON 출력</a><br/>
 	<a href="#" id="ajaxsend">AJAX로 JSON 가져오기</a><br/>
+	<a href="data.xml">XML로 출력</a><br/>
 	<div id="disp"></div>
 </body>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>

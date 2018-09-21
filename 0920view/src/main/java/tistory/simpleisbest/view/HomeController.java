@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import tistory.simpleisbest.view.domain.DataReport;
+import tistory.simpleisbest.view.domain.DataStructure;
+
 @Controller
 public class HomeController {
 	
@@ -78,4 +81,35 @@ public class HomeController {
 		return "jsonview";
 	}
 	
+	@RequestMapping(value="data.xml", method=RequestMethod.GET)
+	public String data(Model model) {
+		DataStructure ds1 = new DataStructure();
+		ds1.setKind("coffee");
+		ds1.setName("아메리카노");
+		ds1.setPrice(1500);
+		
+		DataStructure ds2 = new DataStructure();
+		ds2.setKind("coffee");
+		ds2.setName("카페라떼");
+		ds2.setPrice(3500);
+		
+		DataStructure ds3 = new DataStructure();
+		ds3.setKind("tea");
+		ds3.setName("얼그레이");
+		ds3.setPrice(3500);
+		
+		List<DataStructure> list = new ArrayList<>();
+		list.add(ds1);
+		list.add(ds2);
+		list.add(ds3);
+		
+		DataReport dr = new DataReport();
+		dr.setList(list);
+		
+		//위 데이터를 모델에 저장
+		model.addAttribute("dataReport", dr);
+		
+		//출력할 뷰 이름을 리턴
+		return "dataxml";
+	}
 }
