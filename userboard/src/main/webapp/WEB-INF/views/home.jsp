@@ -3,6 +3,12 @@
 <html>
 <head>
 	<title>Home</title>
+	<!-- html 파일에서 경로는  pageContext.request.contextPath를 붙여서 절대경로 형태로 사용 = 안 헷갈림-->
+	<script src="${pageContext.request.contextPath}/resources/jquery/jquery.js"></script>
+<script>
+$(function(){
+	alert("jquery setup")
+})</script>
 </head>
 <body>
 <h1>
