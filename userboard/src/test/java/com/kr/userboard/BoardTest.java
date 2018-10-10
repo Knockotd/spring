@@ -4,8 +4,10 @@ import java.sql.Connection;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -31,5 +33,12 @@ public class BoardTest {
 		}	
 	}
 
+	@Autowired
+	private SqlSession sqlSession;
+	
+	@Test
+	public void sqlSessionTest() {
+		System.out.println(sqlSession);
+	}
 	
 }

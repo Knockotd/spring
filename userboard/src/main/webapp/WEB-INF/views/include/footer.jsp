@@ -8,7 +8,7 @@
 </footer>
 </div>
 <script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"
+	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"
 	type="text/javascript"></script>
 </body>
 </html>
