@@ -11,5 +11,9 @@ parameterType="java.lang.String">
 	from springuser
 	where email = #{email}
 </select>
-
+<!-- 회원가입을 위한 SQL 파라미터 타입은 아래 값을 하나로묶을 수 있는 것. -->
+<insert id ="register"
+parameterType="User">
+insert into springuser(email, pw, nickname, image) values(#{email}, #{pw}, #{nickname}, #{image})
+</insert>
 </mapper>
