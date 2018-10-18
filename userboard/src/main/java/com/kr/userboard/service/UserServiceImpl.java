@@ -3,6 +3,8 @@ package com.kr.userboard.service;
 import java.io.File;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +56,27 @@ public class UserServiceImpl implements UserService {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public User login(HttpServletRequest request) {
+		//파라미터 읽기
+		String email = request.getParameter("email");
+		String pw = request.getParameter("pw");
+		
+		//email에 해당하는 데이터 가져오기
+		//null이 리턴되면 없는 email 입니다.
+		User user = userDao.login(email);
+		if( user != null) {
+		//	비밀번호 확인
+			if(BCrypt.checkpw(pw, user.getPw())) {
+				//비밀번호 삭제
+				user.setPw(null);
+			}else {
+				//비밀번호 틀렸으므로 null로 변경
+				user = null;
+			}
+		}
+		return user;
 	}
 
 }

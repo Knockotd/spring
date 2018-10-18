@@ -25,4 +25,9 @@ public String idcheck(String email) {
 public void register(User user){
 sqlSession.insert("springuser.register",user);
 }
+
+//로그인 처리를 위한 메소드
+public User login(String email) {
+	return sqlSession.selectOne("springuser.login", email);
+}
 }

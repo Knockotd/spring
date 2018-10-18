@@ -16,4 +16,14 @@ parameterType="java.lang.String">
 parameterType="User">
 insert into springuser(email, pw, nickname, image) values(#{email}, #{pw}, #{nickname}, #{image})
 </insert>
+
+<!-- 로그인 처리를 위한 SQL - 비밀번호가 암호화 되어 있어서 Service에서 비교해야 함다.
+1. 입력받는 것: email
+2. 돌려주는 것: email, pw, nickname, image-->
+<select id="login"
+resultType="User"
+parameterType="java.lang.String">
+select email, pw, nickname, image from springuser where email=#{email}
+</select>
+
 </mapper>
